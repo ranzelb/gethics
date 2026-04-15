@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Path of Wisdom — Buddhism vs Hinduism</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sky1: #1a0a3d;
+  --sky2: #2d1060;
+  --sky3: #4a1880;
+  --gold: #FFD700;
+  --gold2: #FFA500;
+  --teal: #00E5C8;
+  --teal2: #00B89A;
+  --pink: #FF6B9D;
+  --pink2: #E5558D;
+  --orange: #FF8C42;
+  --green: #5EE080;
+  --green2: #3DC960;
+  --blue: #4DAAFF;
+  --purple: #C47FFF;
+  --red: #FF5252;
+  --white: #FFFFFF;
+  --lvl-done: #5EE080;
+  --lvl-current: #FFD700;
+  --lvl-locked: #4a3a6b;
+  --text-dark: #1a0a3d;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 40%, var(--sky3) 100%);
+  min-height: 100vh;
+}
+
+/* Floating particles */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  animation: float-up linear infinite;
+  z-index: 0;
+}
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Screens */
+.screen { display: none; animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.screen.active { display: block; }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+  min-height: 100vh;
+}
+
+/* ======= TITLE SCREEN ======= */
+.title-bg {
+  text-align: center;
+  padding: 2rem 0 1.5rem;
+}
+
+.title-banner {
+  display: inline-block;
+  background: linear-gradient(135deg, #FF6B9D, #C47FFF, #4DAAFF);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(196,127,255,0.4);
+}
+
+.title-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(36px, 9vw, 54px);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 4px 12px rgba(255,215,0,0.5));
+}
+.title-logo span:nth-child(1) { color: var(--gold); }
+.title-logo span:nth-child(2) { color: var(--pink); }
+.title-logo span:nth-child(3) { color: var(--teal); }
+.title-logo span:nth-child(4) { color: var(--purple); }
+.title-logo span:nth-child(5) { color: var(--orange); }
+.title-logo span:nth-child(6) { color: var(--green); }
+
+.title-tagline {
+  color: rgba(255,255,255,0.65);
+  font-size: 14px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.rel-cards {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 1.75rem;
+}
+
+.rel-card {
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 18px 10px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.rel-card:hover { transform: translateY(-3px); border-color: rgba(255,215,0,0.5); }
+.rel-card .icon { font-size: 38px; margin-bottom: 8px; display: block; }
+.rel-card .name { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--gold); margin-bottom: 4px; }
+.rel-card .desc { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+.vs-orb {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink2), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(196,127,255,0.5);
+  flex-shrink: 0;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+.stat-bubble {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+}
+.stat-bubble .val { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--teal); line-height: 1; }
+.stat-bubble .lbl { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px; font-weight: 600; }
+
+.btn-play {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--teal2) 100%);
+  color: var(--text-dark);
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #2a9960, 0 8px 24px rgba(0,229,200,0.3);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-play:hover { transform: translateY(-2px); box-shadow: 0 8px 0 #2a9960, 0 10px 28px rgba(0,229,200,0.4); }
+.btn-play:active { transform: translateY(3px); box-shadow: 0 3px 0 #2a9960; }
+
+/* ======= MAP SCREEN ======= */
+.map-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 14px 0 10px;
+  background: linear-gradient(180deg, var(--sky1) 70%, transparent);
+}
+
+.map-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.map-title-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  color: var(--gold);
+  text-shadow: 0 2px 8px rgba(255,215,0,0.4);
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.25);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+.score-val { font-weight: 900; font-size: 14px; color: var(--gold); }
+.score-lbl { font-size: 11px; color: rgba(255,215,0,0.7); margin-left: 2px; font-weight: 700; }
+
+.xp-bar-wrap {
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  height: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal2), var(--teal), var(--gold));
+  border-radius: 10px;
+  transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.3);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer { to { left: 200%; } }
+
+.xp-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ROADMAP */
+.candy-map {
+  padding: 20px 0;
+  position: relative;
+}
+
+.level-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+  min-height: 120px;
+}
+.level-row.pos-left { justify-content: flex-start; padding-left: 12px; }
+.level-row.pos-center { justify-content: center; }
+.level-row.pos-right { justify-content: flex-end; padding-right: 12px; }
+
+.level-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.node-bubble {
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+  border: 4px solid rgba(255,255,255,0.2);
+}
+.node-bubble:hover { transform: scale(1.12); }
+
+.level-node.done .node-bubble {
+  background: linear-gradient(145deg, #6BEF90, #3DC960);
+  border-color: #fff;
+  box-shadow: 0 6px 0 #28a050, 0 8px 28px rgba(94,224,128,0.5);
+}
+.level-node.current .node-bubble {
+  background: linear-gradient(145deg, #FFE566, #FFD700);
+  border-color: #fff;
+  box-shadow: 0 6px 0 #b88a00, 0 8px 28px rgba(255,215,0,0.6);
+  animation: bounce-node 1.5s ease-in-out infinite;
+}
+@keyframes bounce-node {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.level-node.locked .node-bubble {
+  background: linear-gradient(145deg, #5a4580, #3d2e60);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 4px 0 #2a1e45, 0 6px 16px rgba(0,0,0,0.4);
+  cursor: default;
+  opacity: 0.6;
+}
+
+.node-icon { font-size: 26px; line-height: 1; }
+.node-lbl {
+  font-size: 9px; font-weight: 800;
+  text-align: center; line-height: 1.2;
+  max-width: 72px; margin-top: 3px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.level-node.done .node-lbl { color: #0a3d1a; }
+.level-node.current .node-lbl { color: #5a3000; }
+.level-node.locked .node-lbl { color: rgba(255,255,255,0.35); }
+
+.node-num {
+  position: absolute;
+  top: -8px; left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 11px; font-weight: 900;
+  color: var(--text-dark);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+
+.node-stars {
+  position: absolute;
+  bottom: -10px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 1px;
+  background: rgba(10,5,30,0.8);
+  border-radius: 10px;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.node-lock { font-size: 22px; color: rgba(255,255,255,0.4); }
+
+.v-connector {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: -4px 0;
+  position: relative;
+  z-index: 1;
+}
+.v-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.v-dot.lit { background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+.chapter-header {
+  text-align: center;
+  padding: 22px 0 10px;
+  position: relative; z-index: 2;
+}
+.chapter-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--pink2));
+  border-radius: 30px;
+  padding: 8px 24px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px; color: #fff;
+  box-shadow: 0 4px 0 rgba(100,0,100,0.4), 0 6px 20px rgba(196,127,255,0.3);
+}
+
+/* Sub-questions section */
+.sub-q-indicator {
+  position: absolute;
+  right: -12px; top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  border-radius: 10px;
+  padding: 2px 7px;
+  font-size: 10px; font-weight: 900;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(255,140,66,0.5);
+  white-space: nowrap;
+}
+
+/* ======= QUESTION SCREEN ======= */
+.q-screen-wrap { padding-top: 1.5rem; }
+
+.q-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; margin-bottom: 1.25rem;
+  transition: background 0.15s;
+}
+.q-back-btn:hover { background: rgba(255,255,255,0.13); }
+
+.q-level-pill {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1rem;
+}
+.q-lvl-badge {
+  background: linear-gradient(135deg, var(--purple), var(--pink2));
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px; color: #fff;
+  box-shadow: 0 3px 10px rgba(196,127,255,0.4);
+}
+.q-lvl-sub { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; }
+
+/* Sub-question progress dots */
+.sub-progress {
+  display: flex; gap: 6px; align-items: center;
+  margin-bottom: 14px;
+  justify-content: center;
+}
+.sub-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.2);
+  transition: all 0.3s;
+}
+.sub-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.3); }
+.sub-dot.done { background: var(--green); border-color: var(--green); }
+
+.q-card {
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+}
+
+.q-icon-big { font-size: 48px; display: block; margin-bottom: 14px; text-align: center; }
+.q-text { font-size: 17px; font-weight: 700; line-height: 1.5; color: #fff; text-align: center; }
+
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
+
+.opt-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 18px;
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: #fff; cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  line-height: 1.4;
+  animation: flashIn 0.4s ease both;
+}
+@keyframes flashIn {
+  0% { opacity: 0; transform: translateX(-12px); }
+  60% { opacity: 1; transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+.opt-btn:nth-child(1) { animation-delay: 0.05s; }
+.opt-btn:nth-child(2) { animation-delay: 0.13s; }
+.opt-btn:nth-child(3) { animation-delay: 0.21s; }
+.opt-btn:nth-child(4) { animation-delay: 0.29s; }
+
+.opt-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateX(4px);
+}
+.opt-btn:disabled { cursor: default; transform: none; }
+
+.opt-letter {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900;
+  flex-shrink: 0;
+  color: rgba(255,255,255,0.7);
+  border: 2px solid rgba(255,255,255,0.15);
+  font-family: 'Fredoka One', cursive;
+  transition: all 0.15s;
+}
+
+.opt-btn.correct {
+  background: rgba(94,224,128,0.18);
+  border-color: var(--green);
+  box-shadow: 0 0 20px rgba(94,224,128,0.25);
+}
+.opt-btn.correct .opt-letter { background: var(--green2); border-color: var(--green); color: #fff; }
+.opt-btn.wrong {
+  background: rgba(255,82,82,0.15);
+  border-color: var(--red);
+}
+.opt-btn.wrong .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.feedback-box {
+  background: rgba(0,229,200,0.08);
+  border: 2px solid rgba(0,229,200,0.25);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  display: none;
+  font-weight: 600;
+}
+.feedback-box.show { display: block; animation: popIn 0.3s ease; }
+.feedback-box strong { color: var(--teal); }
+.feedback-box.wrong-fb { background: rgba(255,82,82,0.08); border-color: rgba(255,82,82,0.25); }
+.feedback-box.wrong-fb strong { color: #FF8585; }
+
+.q-actions { display: flex; gap: 10px; align-items: center; }
+
+.btn-continue {
+  flex: 1;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--green), var(--teal2));
+  color: var(--text-dark);
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  border: none; border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #1a7a55, 0 6px 20px rgba(0,229,200,0.3);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-continue:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #1a7a55, 0 8px 24px rgba(0,229,200,0.4); }
+.btn-continue:active { transform: translateY(3px); box-shadow: 0 2px 0 #1a7a55; }
+
+.btn-outline {
+  padding: 14px 16px;
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* ======= RESULT POPUP ======= */
+.result-popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 200;
+  background: rgba(15, 8, 40, 0.95);
+  border: 3px solid;
+  border-radius: 28px;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  pointer-events: none;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  min-width: 220px;
+}
+.result-popup.show { transform: translate(-50%, -50%) scale(1); pointer-events: all; }
+.result-popup.correct-pop { border-color: var(--green); }
+.result-popup.wrong-pop { border-color: var(--red); }
+.rp-icon { font-size: 56px; display: block; margin-bottom: 10px; }
+.rp-title { font-family: 'Fredoka One', cursive; font-size: 28px; margin-bottom: 6px; }
+.correct-pop .rp-title { color: var(--green); }
+.wrong-pop .rp-title { color: var(--red); }
+.rp-sub { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 600; }
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 199;
+  display: none;
+}
+.popup-overlay.show { display: block; }
+
+/* ======= WIN SCREEN ======= */
+.win-wrap {
+  text-align: center;
+  padding: 2rem 0;
+}
+.win-confetti-zone {
+  height: 80px;
+  position: relative;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  animation: confetti-fall 1.5s ease-in forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(80px) rotate(360deg); opacity: 0; }
+}
+
+.win-trophy { font-size: 70px; margin-bottom: 12px; display: block; animation: trophy-bounce 1s ease-out 0.3s both; }
+@keyframes trophy-bounce {
+  0% { transform: scale(0) rotate(-10deg); }
+  60% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.win-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--orange), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.win-sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 15px; line-height: 1.6;
+  margin-bottom: 1.5rem; font-weight: 600;
+}
+
+.win-score-big {
+  background: rgba(255,215,0,0.1);
+  border: 2px solid rgba(255,215,0,0.3);
+  border-radius: 20px;
+  padding: 16px 24px;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+.win-score-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 48px;
+  color: var(--gold);
+  line-height: 1;
+}
+.win-score-lbl {
+  font-size: 13px;
+  color: rgba(255,215,0,0.6);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.win-stars-big {
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.win-star {
+  font-size: 44px;
+  filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
+  animation: star-pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.win-star:nth-child(1) { animation-delay: 0.3s; }
+.win-star:nth-child(2) { animation-delay: 0.5s; font-size: 52px; }
+.win-star:nth-child(3) { animation-delay: 0.7s; }
+@keyframes star-pop {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Summary comparison table */
+.summary-card {
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.summary-title {
+  padding: 14px 16px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: var(--gold);
+  background: rgba(255,215,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.summary-card table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.summary-card th {
+  padding: 10px 12px;
+  background: rgba(255,215,0,0.08);
+  color: var(--gold);
+  font-family: 'Fredoka One', cursive;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.summary-card td {
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.85);
+  vertical-align: top;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.summary-card tr:last-child td { border-bottom: none; }
+.summary-card td:first-child { color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.shared-badge {
+  font-size: 9px;
+  background: rgba(196,127,255,0.2);
+  color: #d4a3ff;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-left: 4px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.win-actions { display: flex; gap: 10px; margin-top: 1rem; }
+.win-actions .btn-play { flex: 1; }
+.win-back {
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.win-back:hover { background: rgba(255,255,255,0.13); }
+
+/* Character guide */
+.journey-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px 0 18px;
+  position: relative; z-index: 2;
+  animation: char-entrance 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes char-entrance {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.char-figure { position: relative; width: 80px; height: 80px; }
+.char-body-svg { width: 80px; height: 80px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
+.char-speech {
+  background: rgba(255,255,255,0.95);
+  color: #1a0a3d;
+  border-radius: 14px;
+  padding: 6px 14px;
+  font-size: 11px; font-weight: 800;
+  text-align: center; max-width: 220px;
+  line-height: 1.4; margin-top: 8px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.char-speech::before {
+  content: ''; position: absolute;
+  top: -7px; left: 50%; transform: translateX(-50%);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid rgba(255,255,255,0.95);
+}
+
+.node-progress {
+  position: absolute;
+  bottom: -22px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px; font-weight: 900;
+  color: var(--teal);
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(0,229,200,0.3);
+  border-radius: 8px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.level-node.done .node-progress { color: var(--green); border-color: rgba(94,224,128,0.4); }
+.level-node.locked .node-progress { color: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<div id="popup-overlay" class="popup-overlay"></div>
+<div id="result-popup" class="result-popup">
+  <span class="rp-icon" id="rp-icon"></span>
+  <div class="rp-title" id="rp-title"></div>
+  <div class="rp-sub" id="rp-sub"></div>
+</div>
+
+<div class="wrapper">
+
+  <!-- ===== TITLE SCREEN ===== -->
+  <div id="title" class="screen active">
+    <div class="title-bg">
+      <div class="title-banner">📚 Lesson 4 · Buddhism vs Hinduism</div>
+      <h1 class="title-logo">
+        <span>P</span><span>a</span><span>t</span><span>h</span>&nbsp;<span>o</span><span>f</span>
+      </h1>
+      <h1 class="title-logo" style="margin-top:-8px;">
+        <span style="color:var(--purple)">W</span><span style="color:var(--blue)">i</span><span style="color:var(--pink)">s</span><span style="color:var(--orange)">d</span><span style="color:var(--green)">o</span><span style="color:var(--teal)">m</span>
+      </h1>
+      <p class="title-tagline">Journey through 7 sacred levels of knowledge.<br>Compare Buddhism &amp; Hinduism on the path!</p>
+    </div>
+
+    <div class="rel-cards">
+      <div class="rel-card">
+        <span class="icon">🕉️</span>
+        <div class="name">Hinduism</div>
+        <div class="desc">Dharma · Karma<br>Moksha · Atman</div>
+      </div>
+      <div class="vs-orb">VS</div>
+      <div class="rel-card">
+        <span class="icon">☸️</span>
+        <div class="name">Buddhism</div>
+        <div class="desc">Four Noble Truths<br>Nirvana · Anatta</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-bubble"><div class="val">7</div><div class="lbl">Levels</div></div>
+      <div class="stat-bubble"><div class="val">22</div><div class="lbl">Questions</div></div>
+      <div class="stat-bubble"><div class="val">3–4</div><div class="lbl">Choices</div></div>
+      <div class="stat-bubble"><div class="val">⭐</div><div class="lbl">Stars</div></div>
+    </div>
+
+    <button class="btn-play" onclick="startGame()">🌟 Start Journey!</button>
+  </div>
+
+  <!-- ===== MAP SCREEN ===== -->
+  <div id="map" class="screen">
+    <div class="map-header">
+      <div class="map-topbar">
+        <span class="map-title-text">🗺️ Path of Wisdom</span>
+        <div class="score-display">
+          <span style="font-size:16px;">⭐</span>
+          <span class="score-val" id="score-val">0</span>
+          <span class="score-lbl">pts</span>
+        </div>
+      </div>
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-fill" id="xp-fill" style="width:0%"></div>
+      </div>
+      <div class="xp-label">
+        <span>Progress</span>
+        <span id="xp-text">0 / 7 levels</span>
+      </div>
+    </div>
+
+    <div class="candy-map" id="candy-map"></div>
+
+    <div style="text-align:center;margin-top:1rem;">
+      <button class="btn-outline" onclick="setScreen('title')">← Back to Home</button>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION SCREEN ===== -->
+  <div id="question" class="screen">
+    <div class="q-screen-wrap">
+      <button class="q-back-btn" onclick="goBackToMap()">← Map</button>
+      <div class="q-level-pill">
+        <div class="q-lvl-badge" id="q-badge"></div>
+        <div class="q-lvl-sub" id="q-sub"></div>
+      </div>
+      <div class="sub-progress" id="sub-progress"></div>
+      <div class="q-card">
+        <span class="q-icon-big" id="q-icon"></span>
+        <div class="q-text" id="q-text"></div>
+      </div>
+      <div class="options" id="options"></div>
+      <div class="feedback-box" id="feedback"></div>
+      <div class="q-actions">
+        <button class="btn-continue" id="next-btn" onclick="nextSubQ()" style="display:none">Continue ›</button>
+        <button class="btn-outline" onclick="goBackToMap()" id="map-btn">🗺️ Map</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WIN SCREEN ===== -->
+  <div id="win" class="screen">
+    <div class="win-wrap">
+      <div class="win-confetti-zone" id="confetti-zone"></div>
+      <span class="win-trophy">🏆</span>
+      <h2 class="win-title">Path Complete!</h2>
+      <p class="win-sub">You've mastered all 7 levels of the<br>Path of Wisdom! Amazing journey!</p>
+
+      <div class="win-score-big">
+        <div class="win-score-num" id="final-score">0</div>
+        <div class="win-score-lbl">POINTS EARNED</div>
+      </div>
+
+      <div class="win-stars-big">
+        <span class="win-star">⭐</span>
+        <span class="win-star">🌟</span>
+        <span class="win-star">⭐</span>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-title">📊 Buddhism vs Hinduism — Quick Comparison</div>
+        <table>
+          <thead><tr><th>Category</th><th>🕉️ Hinduism</th><th>☸️ Buddhism</th></tr></thead>
+          <tbody>
+            <tr><td>Founder</td><td>No single founder</td><td>Siddhartha Gautama</td></tr>
+            <tr><td>Origin</td><td>Indus Valley, India (~2000–1500 BCE)</td><td>India/Nepal (~6th century BCE)</td></tr>
+            <tr><td>Sacred Texts</td><td>Vedas, Upanishads, Bhagavad Gita</td><td>Tripitaka (Three Baskets)</td></tr>
+            <tr><td>View of God</td><td>Brahman – universal source</td><td>No creator God; natural law</td></tr>
+            <tr><td>Life Principle</td><td>Dharma – righteous duty</td><td>Middle Way – balanced living</td></tr>
+            <tr><td>Afterlife</td><td>Samsara → Moksha</td><td>Rebirth cycle → Nirvana</td></tr>
+            <tr><td>Main Festival</td><td>Diwali (Festival of Lights)</td><td>Vesak / Bodhi Day</td></tr>
+            <tr><td>Symbol</td><td>Om (🕉️), Lotus, Trishula</td><td>Dharma Wheel ☸️, Lotus, Bodhi Tree</td></tr>
+            <tr><td>Worship Place</td><td>Mandir (temple)</td><td>Bodh Gaya, Viharas</td></tr>
+            <tr><td>Shared Belief</td><td colspan="2">Karma · Dharma · Rebirth cycle <span class="shared-badge">shared</span></td></tr>
+            <tr><td>Main Region</td><td>India (largest population)</td><td>Thailand, Japan, SE Asia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="win-actions">
+        <button class="btn-play" onclick="resetGame()">🔄 Play Again</button>
+        <button class="win-back" onclick="setScreen('title')">🏠</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end wrapper -->
+
+<script>
+// ============================================================
+// DATA — All 7 levels with sub-questions
+// ============================================================
+const levels = [
+  {
+    id: 1, icon: "📜", label: "Founding",
+    badge: "Level 1", sub: "Founding & History",
+    color: "#FF6B9D",
+    questions: [
+      {
+        icon: "🕉️",
+        q: "Who is considered the founder of Hinduism?",
+        opts: ["Siddhartha Gautama","No single founder","Mahatma Gandhi"],
+        correct: 1,
+        feedback: "<strong>✅ No single founder!</strong> Hinduism developed over thousands of years from different traditions. Unlike many other religions, it has no single founder — it grew organically from ancient Indian civilization."
+      },
+      {
+        icon: "🗺️",
+        q: "Where did Hinduism originate?",
+        opts: ["China","India (Indus Valley)","Japan"],
+        correct: 1,
+        feedback: "<strong>✅ India (Indus Valley)!</strong> Hinduism began in ancient India, particularly around the Indus River Valley civilization — one of the world's oldest urban cultures."
+      },
+      {
+        icon: "⏳",
+        q: "Around what time did Hinduism begin?",
+        opts: ["Around 2000–1500 BCE","Around 500 CE","Around 1800 CE"],
+        correct: 0,
+        feedback: "<strong>✅ Around 2000–1500 BCE!</strong> Hinduism is one of the oldest religions in the world, dating back more than 4,000 years to the ancient Indus Valley civilization."
+      },
+      {
+        icon: "☸️",
+        q: "Who founded Buddhism?",
+        opts: ["Confucius","Siddhartha Gautama","Laozi"],
+        correct: 1,
+        feedback: "<strong>✅ Siddhartha Gautama!</strong> Buddhism was founded by Siddhartha Gautama, also known as the Buddha (the Enlightened One), after he reached enlightenment under the Bodhi Tree."
+      },
+      {
+        icon: "🌏",
+        q: "Where did Buddhism originate?",
+        opts: ["India/Nepal","Egypt","Greece"],
+        correct: 0,
+        feedback: "<strong>✅ India/Nepal!</strong> Buddhism started in the region of northern India and present-day Nepal, where Buddha lived and taught after attaining enlightenment."
+      },
+      {
+        icon: "📅",
+        q: "When did Buddhism begin?",
+        opts: ["Around 6th century BCE","Around 1500 CE","Around 200 BCE"],
+        correct: 0,
+        feedback: "<strong>✅ Around 6th century BCE!</strong> Buddhism began around the 6th century BCE, when Siddhartha Gautama started teaching after his enlightenment near Bodh Gaya, India."
+      }
+    ]
+  },
+  {
+    id: 2, icon: "📖", label: "Sacred Texts",
+    badge: "Level 2", sub: "Holy Books & Scriptures",
+    color: "#C47FFF",
+    questions: [
+      {
+        icon: "☸️",
+        q: "What is the name of Buddhism's primary collection of sacred texts, also known as the 'Three Baskets'?",
+        opts: ["The Dhammapada","The Tripitaka (Tipitaka)","The Ramayana"],
+        correct: 1,
+        feedback: "<strong>✅ The Tripitaka!</strong> The Tripitaka (Tipitaka in Pali) is Buddhism's complete canon. 'Tri' means three and 'pitaka' means baskets — its three sections are: Vinaya Pitaka (monastic rules), Sutta Pitaka (teachings), and Abhidhamma Pitaka (philosophical analysis)."
+      },
+      {
+        icon: "📚",
+        q: "Which 'basket' of the Tripitaka contains the Buddha's direct teachings, including the famous Dhammapada?",
+        opts: ["Vinaya Pitaka","Abhidhamma Pitaka","Sutta Pitaka"],
+        correct: 2,
+        feedback: "<strong>✅ Sutta Pitaka!</strong> The Sutta Pitaka ('Discourse Basket') is the second basket containing the Buddha's actual teachings and sermons. The Dhammapada — famous verses on moral law — is found within this basket."
+      },
+      {
+        icon: "🕉️",
+        q: "Which is considered the oldest and most sacred collection of scriptures in Hinduism?",
+        opts: ["The Bhagavad Gita","The Vedas","The Upanishads"],
+        correct: 1,
+        feedback: "<strong>✅ The Vedas!</strong> The Vedas are the oldest and most sacred texts of Hinduism, composed over 3,500 years ago. 'Veda' means 'knowledge.' There are four Vedas: Rigveda, Yajurveda, Samaveda, and Atharvaveda. They are classified as Shruti ('that which is heard')."
+      }
+    ]
+  },
+  {
+    id: 3, icon: "✨", label: "Core Teachings",
+    badge: "Level 3", sub: "Main Beliefs & Teachings",
+    color: "#4DAAFF",
+    questions: [
+      {
+        icon: "🙏",
+        q: "Which statement best represents both Buddhism and Hinduism's view of divinity?",
+        opts: ["One God — a single creator","Enlightened Human (Buddha)","Natural Law — karma and dharma"],
+        correct: 2,
+        feedback: "<strong>✅ Natural Law!</strong> Both religions teach that the universe operates according to natural or spiritual laws (karma and dharma), not under a single creator God. Buddhism rejects a creator God entirely; Hinduism focuses on Brahman as the universal source, not a personal creator."
+      },
+      {
+        icon: "⚖️",
+        q: "What principle guides Buddhists to live a balanced life?",
+        opts: ["Indulgence","Dharma Scroll (Hinduism)","Middle Way"],
+        correct: 2,
+        feedback: "<strong>✅ Middle Way!</strong> The Middle Way teaches Buddhists to avoid extremes of indulgence and self-denial, leading to inner peace and wisdom. Buddhism rejects indulgence because it leads to attachment and suffering — the opposite of enlightenment."
+      },
+      {
+        icon: "🔄",
+        q: "What happens to the soul after death according to Hinduism?",
+        opts: ["Hell Flames (permanent)","Heaven (eternal)","Rebirth Cycle (Samsara)"],
+        correct: 2,
+        feedback: "<strong>✅ Rebirth Cycle!</strong> Souls undergo samsara — the continuous cycle of birth, death, and rebirth — until achieving Moksha (liberation from this cycle). Heaven and hell in Hinduism are temporary states, not permanent destinations."
+      }
+    ]
+  },
+  {
+    id: 4, icon: "🪔", label: "Practices",
+    badge: "Level 4", sub: "Worship, Rituals & Festivals",
+    color: "#FF8C42",
+    questions: [
+      {
+        icon: "🎉",
+        q: "Which of the following is a major festival in Hinduism?",
+        opts: ["Vesak","Diwali","Bodhi Day"],
+        correct: 1,
+        feedback: "<strong>✅ Diwali!</strong> Diwali is one of the most important Hindu festivals, known as the Festival of Lights. Vesak is a Buddhist festival celebrating Buddha's birth, enlightenment, and death. Bodhi Day is a Buddhist celebration marking Buddha's enlightenment."
+      }
+    ]
+  },
+  {
+    id: 5, icon: "🔣", label: "Symbols",
+    badge: "Level 5", sub: "Sacred Icons & Their Meanings",
+    color: "#5EE080",
+    questions: [
+      {
+        icon: "🕉️",
+        q: "What does the Om (🕉️) symbol represent in Hinduism?",
+        opts: ["War and power","The sound of the universe","Wealth and money"],
+        correct: 1,
+        feedback: "<strong>✅ The sound of the universe!</strong> Om represents the universal sound and ultimate reality (Brahman) in Hindu belief. It is considered the most sacred sound and symbol in Hinduism, representing the essence of all existence."
+      },
+      {
+        icon: "🪷",
+        q: "What does the Lotus flower symbolize in Hinduism?",
+        opts: ["Darkness","Purity and spiritual growth","Anger"],
+        correct: 1,
+        feedback: "<strong>✅ Purity and spiritual growth!</strong> The lotus grows in muddy water but stays clean and beautiful, symbolizing purity and spiritual enlightenment — rising above the material world."
+      },
+      {
+        icon: "🔱",
+        q: "What does the Trishula (trident) represent in Hinduism?",
+        opts: ["Three worlds or powers","Farming tools","Music"],
+        correct: 0,
+        feedback: "<strong>✅ Three worlds or powers!</strong> The trident (Trishula) symbolizes creation, preservation, and destruction — the three functions of the universe. It is often associated with the god Shiva, one of Hinduism's most important deities."
+      },
+      {
+        icon: "☸️",
+        q: "What does the Dharma Wheel (☸️) represent in Buddhism?",
+        opts: ["Wealth","The path to enlightenment","War"],
+        correct: 1,
+        feedback: "<strong>✅ The path to enlightenment!</strong> The Dharma Wheel (Dharmachakra) represents the Eightfold Path — the Buddha's guide to ending suffering and reaching enlightenment. Its eight spokes represent the eight aspects of the path."
+      },
+      {
+        icon: "🪷",
+        q: "What does the Lotus flower symbolize in Buddhism?",
+        opts: ["Laziness","Purity and awakening","Fear"],
+        correct: 1,
+        feedback: "<strong>✅ Purity and awakening!</strong> Like in Hinduism, the lotus symbolizes rising above suffering and achieving enlightenment — growing beautifully from muddy water toward the light."
+      },
+      {
+        icon: "🌳",
+        q: "What does the Bodhi Tree symbolize in Buddhism?",
+        opts: ["Food and nature","Enlightenment","Death"],
+        correct: 1,
+        feedback: "<strong>✅ Enlightenment!</strong> The Bodhi Tree is where Siddhartha Gautama sat in meditation and attained enlightenment, becoming the Buddha. It is a powerful symbol of wisdom and awakening."
+      }
+    ]
+  },
+  {
+    id: 6, icon: "⛩️", label: "Sacred Places",
+    badge: "Level 6", sub: "Places of Worship & Pilgrimage",
+    color: "#FFD700",
+    questions: [
+      {
+        icon: "🕌",
+        q: "In Hinduism, what is the main place of worship called?",
+        opts: ["Home Shrine","Mandir","Ganges River","Varanasi"],
+        correct: 1,
+        feedback: "<strong>✅ Mandir!</strong> The Mandir is the main Hindu temple where worshippers gather. Inside are sacred spaces like the garbhagriha (inner shrine), shikhara (tower), and ardhamandapa (entrance porch). A home shrine is for personal prayer; the Ganges and Varanasi are sacred sites for rituals, not structured worship buildings."
+      },
+      {
+        icon: "🌳",
+        q: "Which place is considered the most sacred site in Buddhism?",
+        opts: ["Lumbini","Bodh Gaya","Sarnath","Kushinagar"],
+        correct: 1,
+        feedback: "<strong>✅ Bodh Gaya!</strong> Bodh Gaya is the most sacred site in Buddhism because it is where Siddhartha Gautama attained enlightenment under the Bodhi Tree, becoming the Buddha. Lumbini is his birthplace, Sarnath is where he first taught, and Kushinagar is where he passed away."
+      }
+    ]
+  },
+  {
+    id: 7, icon: "🌏", label: "Population",
+    badge: "Level 7", sub: "Where It Is Practiced Today",
+    color: "#00E5C8",
+    questions: [
+      {
+        icon: "🗺️",
+        q: "Where is Hinduism primarily practiced today?",
+        opts: ["Thailand","India","Japan"],
+        correct: 1,
+        feedback: "<strong>✅ India!</strong> India has the largest population of Hindus in the world, making it the primary home of Hinduism. Thailand is mostly Buddhist, and Japan mainly follows Shinto and Buddhism."
+      }
+    ]
+  }
+];
+
+// ============================================================
+// GAME STATE
+// ============================================================
+let completed = [];
+let score = 0;
+let currentLvl = 0;
+let currentSubQ = 0;
+let subQAnswered = [];
+
+// ============================================================
+// SCREEN MANAGEMENT
+// ============================================================
+function setScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBackToMap() {
+  setScreen('map');
+  renderMap();
+}
+
+// ============================================================
+// GAME FLOW
+// ============================================================
+function startGame() {
+  setScreen('map');
+  renderMap();
+}
+
+function resetGame() {
+  completed = [];
+  score = 0;
+  currentLvl = 0;
+  currentSubQ = 0;
+  subQAnswered = [];
+  setScreen('title');
+}
+
+// ============================================================
+// CHARACTER
+// ============================================================
+const charStages = [
+  { svg: `<svg viewBox="0 0 80 80" class="char-body-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="22" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/><text x="40" y="30" text-anchor="middle" font-size="22">🧘</text><ellipse cx="40" cy="58" rx="20" ry="14" fill="#C47FFF" stroke="#9a5fe0" stroke-width="2"/></svg>`, speech: "Begin the journey of wisdom! 🌟" },
+  { svg: `<svg viewBox="0 0 80 80" class="char-body-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="22" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/><text x="40" y="30" text-anchor="middle" font-size="22">🧘</text><ellipse cx="40" cy="58" rx="20" ry="14" fill="#4DAAFF" stroke="#2a88e0" stroke-width="2"/></svg>`, speech: "Great start! Keep going! 💫" },
+  { svg: `<svg viewBox="0 0 80 80" class="char-body-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="22" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/><text x="40" y="30" text-anchor="middle" font-size="22">🧘</text><ellipse cx="40" cy="58" rx="20" ry="14" fill="#5EE080" stroke="#3DC960" stroke-width="2"/></svg>`, speech: "Halfway there — you're doing great! ✨" },
+  { svg: `<svg viewBox="0 0 80 80" class="char-body-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="22" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/><text x="40" y="30" text-anchor="middle" font-size="22">🧘</text><ellipse cx="40" cy="58" rx="20" ry="14" fill="#FF8C42" stroke="#e06020" stroke-width="2"/></svg>`, speech: "Almost at enlightenment! 🌺" },
+  { svg: `<svg viewBox="0 0 80 80" class="char-body-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="22" r="18" fill="#FFE566" stroke="#FFD700" stroke-width="3"/><text x="40" y="30" text-anchor="middle" font-size="22">🧘</text><ellipse cx="40" cy="58" rx="22" ry="15" fill="#FFD700" stroke="#FFA500" stroke-width="2"/></svg>`, speech: "Path of Wisdom complete! 🏆" }
+];
+
+function getCharStage() {
+  return Math.min(Math.floor(completed.length / 2), charStages.length - 1);
+}
+
+// ============================================================
+// RENDER MAP
+// ============================================================
+function renderMap() {
+  document.getElementById('score-val').textContent = score;
+  const pct = Math.round((completed.length / levels.length) * 100);
+  document.getElementById('xp-fill').style.width = pct + '%';
+  document.getElementById('xp-text').textContent = completed.length + ' / ' + levels.length + ' levels';
+
+  const map = document.getElementById('candy-map');
+  map.innerHTML = '';
+
+  // Character
+  const charData = charStages[getCharStage()];
+  const charEl = document.createElement('div');
+  charEl.className = 'journey-character';
+  charEl.innerHTML = `<div class="char-figure">${charData.svg}</div><div class="char-speech">${charData.speech}</div>`;
+  map.appendChild(charEl);
+
+  // Chapter 1 header
+  const ch1 = document.createElement('div');
+  ch1.className = 'chapter-header';
+  ch1.innerHTML = `<div class="chapter-badge">📜 Chapter 1: Origins & Beliefs</div>`;
+  map.appendChild(ch1);
+
+  const layout = [
+    { id: 1, pos: 'left' },
+    { id: 2, pos: 'center' },
+    { id: 3, pos: 'right' },
+    { id: 4, pos: 'center' },
+    { id: 5, pos: 'left' },
+    { id: 6, pos: 'center' },
+    { id: 7, pos: 'right' },
+  ];
+
+  layout.forEach((item, i) => {
+    if (item.id === 5) {
+      const ch2 = document.createElement('div');
+      ch2.className = 'chapter-header';
+      ch2.innerHTML = `<div class="chapter-badge" style="background:linear-gradient(135deg,#FF8C42,#FF6B9D)">🕯️ Chapter 2: Living Traditions</div>`;
+      map.appendChild(ch2);
+    }
+
+    const lv = levels[item.id - 1];
+    const isDone = completed.includes(item.id);
+    const isNext = !isDone && (item.id === 1 || completed.includes(item.id - 1));
+    const isLocked = !isDone && !isNext;
+
+    // Vertical connector dots (between nodes)
+    if (i > 0) {
+      const prevId = layout[i-1].id;
+      const prevDone = completed.includes(prevId);
+      const vcon = document.createElement('div');
+      vcon.className = 'v-connector';
+      vcon.style.alignItems = item.pos === 'left' ? 'flex-start' : item.pos === 'right' ? 'flex-end' : 'center';
+      vcon.style.padding = item.pos === 'left' ? '0 0 0 58px' : item.pos === 'right' ? '0 58px 0 0' : '0';
+      for (let d = 0; d < 4; d++) {
+        const dot = document.createElement('div');
+        dot.className = 'v-dot' + (prevDone ? ' lit' : '');
+        vcon.appendChild(dot);
+      }
+      map.appendChild(vcon);
+    }
+
+    // Level row
+    const row = document.createElement('div');
+    row.className = 'level-row pos-' + item.pos;
+
+    const node = document.createElement('div');
+    node.className = 'level-node ' + (isDone ? 'done' : isNext ? 'current' : 'locked');
+
+    const bubble = document.createElement('div');
+    bubble.className = 'node-bubble';
+
+    const numBadge = document.createElement('div');
+    numBadge.className = 'node-num';
+    numBadge.textContent = isDone ? '✓' : (isLocked ? '🔒' : 'Level ' + item.id);
+
+    const qCount = lv.questions.length;
+    if (isDone) {
+      bubble.innerHTML = `<span class="node-icon">${lv.icon}</span><span class="node-lbl">${lv.label}</span>`;
+      const stars = document.createElement('div');
+      stars.className = 'node-stars';
+      stars.innerHTML = '⭐⭐⭐';
+      bubble.appendChild(stars);
+    } else if (isLocked) {
+      bubble.innerHTML = `<span class="node-lock">🔒</span><span class="node-lbl" style="font-size:8px;color:rgba(255,255,255,0.25);">${lv.label}</span>`;
+    } else {
+      bubble.innerHTML = `<span class="node-icon">${lv.icon}</span><span class="node-lbl">${lv.label}</span>`;
+      if (qCount > 1) {
+        const qBadge = document.createElement('span');
+        qBadge.className = 'sub-q-indicator';
+        qBadge.textContent = qCount + ' Qs';
+        bubble.appendChild(qBadge);
+      }
+    }
+
+    bubble.appendChild(numBadge);
+
+    const pctBadge = document.createElement('div');
+    pctBadge.className = 'node-progress';
+    pctBadge.textContent = Math.round((item.id / levels.length) * 100) + '%';
+    bubble.appendChild(pctBadge);
+
+    node.appendChild(bubble);
+    if (!isLocked) node.onclick = () => openLevel(item.id);
+
+    row.appendChild(node);
+    map.appendChild(row);
+  });
+
+  if (completed.length === levels.length) {
+    setTimeout(() => {
+      launchConfetti();
+      document.getElementById('final-score').textContent = score;
+      setScreen('win');
+    }, 600);
+  }
+}
+
+// ============================================================
+// OPEN LEVEL
+// ============================================================
+function openLevel(lvlId) {
+  currentLvl = lvlId;
+  currentSubQ = 0;
+  subQAnswered = new Array(levels[lvlId - 1].questions.length).fill(false);
+  renderSubQuestion();
+}
+
+function renderSubQuestion() {
+  const lv = levels[currentLvl - 1];
+  const qData = lv.questions[currentSubQ];
+  const total = lv.questions.length;
+
+  document.getElementById('q-badge').textContent = lv.badge;
+  document.getElementById('q-sub').textContent = lv.sub;
+  document.getElementById('q-icon').textContent = qData.icon;
+  document.getElementById('q-text').textContent = qData.q;
+  document.getElementById('feedback').className = 'feedback-box';
+  document.getElementById('feedback').innerHTML = '';
+  document.getElementById('next-btn').style.display = 'none';
+  document.getElementById('map-btn').style.display = 'inline-block';
+
+  // Sub-question progress dots
+  const spEl = document.getElementById('sub-progress');
+  spEl.innerHTML = '';
+  if (total > 1) {
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'sub-dot' + (subQAnswered[i] ? ' done' : (i === currentSubQ ? ' active' : ''));
+      spEl.appendChild(dot);
+    }
+  }
+
+  // Options
+  const optEl = document.getElementById('options');
+  optEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  const levelDone = completed.includes(currentLvl);
+
+  qData.opts.forEach((text, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.dataset.origIdx = i;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span><span>${text}</span>`;
+    btn.disabled = (levelDone && subQAnswered[currentSubQ]);
+    if (levelDone && subQAnswered[currentSubQ] && i === qData.correct) btn.classList.add('correct');
+    btn.onclick = () => handleAnswer(i, qData);
+    optEl.appendChild(btn);
+  });
+
+  setScreen('question');
+}
+
+// ============================================================
+// HANDLE ANSWER
+// ============================================================
+function handleAnswer(chosen, qData) {
+  document.querySelectorAll('.opt-btn').forEach(b => { b.disabled = true; });
+  const isCorrect = chosen === qData.correct;
+  subQAnswered[currentSubQ] = true;
+
+  document.querySelectorAll('.opt-btn').forEach(btn => {
+    const idx = parseInt(btn.dataset.origIdx);
+    if (idx === qData.correct) btn.classList.add('correct');
+    else if (idx === chosen && !isCorrect) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback');
+  if (isCorrect) {
+    score += 10;
+    document.getElementById('score-val').textContent = score;
+    fb.innerHTML = qData.feedback;
+    fb.className = 'feedback-box show';
+    showResultPopup(true);
+  } else {
+    fb.innerHTML = '<strong>Not quite!</strong> ' + qData.feedback;
+    fb.className = 'feedback-box show wrong-fb';
+    showResultPopup(false);
+  }
+
+  document.getElementById('next-btn').style.display = 'inline-block';
+
+  // Update sub-progress dots
+  const spEl = document.getElementById('sub-progress');
+  const dots = spEl.querySelectorAll('.sub-dot');
+  if (dots[currentSubQ]) {
+    dots[currentSubQ].className = 'sub-dot done';
+  }
+}
+
+// ============================================================
+// NEXT SUB-QUESTION / NEXT LEVEL
+// ============================================================
+function nextSubQ() {
+  const lv = levels[currentLvl - 1];
+  const total = lv.questions.length;
+
+  if (currentSubQ < total - 1) {
+    // More sub-questions in this level
+    currentSubQ++;
+    renderSubQuestion();
+  } else {
+    // All sub-questions done — mark level complete
+    if (!completed.includes(currentLvl)) {
+      completed.push(currentLvl);
+    }
+    goBackToMap();
+  }
+}
+
+// ============================================================
+// RESULT POPUP
+// ============================================================
+function showResultPopup(correct) {
+  const popup = document.getElementById('result-popup');
+  const overlay = document.getElementById('popup-overlay');
+  popup.className = 'result-popup show ' + (correct ? 'correct-pop' : 'wrong-pop');
+  overlay.className = 'popup-overlay show';
+  document.getElementById('rp-icon').textContent = correct ? '🎉' : '💔';
+  document.getElementById('rp-title').textContent = correct ? 'Brilliant!' : 'Not quite!';
+  document.getElementById('rp-sub').textContent = correct ? '+10 points earned!' : 'The right answer is shown in green.';
+  setTimeout(() => {
+    popup.className = 'result-popup ' + (correct ? 'correct-pop' : 'wrong-pop');
+    overlay.className = 'popup-overlay';
+  }, 1500);
+}
+
+// ============================================================
+// CONFETTI
+// ============================================================
+function launchConfetti() {
+  const zone = document.getElementById('confetti-zone');
+  zone.innerHTML = '';
+  const colors = ['#FFD700','#FF6B9D','#4DAAFF','#5EE080','#C47FFF','#FF8C42','#00E5C8'];
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*20}%;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay: ${Math.random()*0.8}s;
+      animation-duration: ${1 + Math.random()*1}s;
+      width: ${6+Math.random()*10}px;
+      height: ${6+Math.random()*10}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+    `;
+    zone.appendChild(c);
+  }
+}
+
+// ============================================================
+// FLOATING PARTICLES
+// ============================================================
+(function spawnParticles() {
+  const colors = ['rgba(255,215,0,0.4)','rgba(0,229,200,0.3)','rgba(196,127,255,0.3)','rgba(255,107,157,0.3)','rgba(94,224,128,0.3)'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 4 + Math.random() * 8;
+    p.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${Math.random()*100}vw;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration: ${8+Math.random()*12}s;
+      animation-delay: ${-Math.random()*12}s;
+    `;
+    document.body.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>
